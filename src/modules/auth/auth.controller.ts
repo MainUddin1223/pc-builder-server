@@ -24,7 +24,7 @@ const auth = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic semester created successfully!',
+    message: 'succesfully logged in',
     data: result,
   });
 });
