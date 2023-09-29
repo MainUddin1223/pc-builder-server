@@ -1,11 +1,16 @@
 import express from 'express';
 import config from '../config';
+import authRoute from '../modules/auth/auth.route';
 import componentsRouter from '../modules/components/components.route';
 const router = express.Router();
 const defaultRoutes = [
   {
     path: '/components',
     route: componentsRouter.componentsRouter,
+  },
+  {
+    path: '/auth',
+    route: authRoute.authRouter,
   },
 ];
 defaultRoutes.forEach(route => {
