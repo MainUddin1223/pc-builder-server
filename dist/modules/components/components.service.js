@@ -26,7 +26,7 @@ const getRandomProducts = () => __awaiter(void 0, void 0, void 0, function* () {
 const getCategories = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const uniqueCategories = yield components_model_1.Components.distinct('category').exec();
-        return uniqueCategories;
+        return ['all components', ...uniqueCategories];
     }
     catch (error) {
         console.error('Error retrieving categories:', error);
@@ -55,7 +55,8 @@ const getComponentById = (id) => __awaiter(void 0, void 0, void 0, function* () 
 });
 const getComponentByCategory = (category) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const uniqueCategories = yield components_model_1.Components.find({ category }).exec();
+        const categoryQuery = category == 'all components' ? {} : { category };
+        const uniqueCategories = yield components_model_1.Components.find(categoryQuery).exec();
         return uniqueCategories;
     }
     catch (error) {
