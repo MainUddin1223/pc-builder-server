@@ -16,7 +16,7 @@ const getRandomProducts = async () => {
 const getCategories = async () => {
   try {
     const uniqueCategories = await Components.distinct('category').exec();
-    return uniqueCategories;
+    return ['all components', ...uniqueCategories];
   } catch (error) {
     console.error('Error retrieving categories:', error);
     throw error;
@@ -45,7 +45,8 @@ const getComponentById = async (id: string) => {
 
 const getComponentByCategory = async (category: string) => {
   try {
-    const uniqueCategories = await Components.find({ category }).exec();
+    const categoryQuery = category == 'all components' ? {} : { category };
+    const uniqueCategories = await Components.find(categoryQuery).exec();
     return uniqueCategories;
   } catch (error) {
     console.error('Error retrieving component by category:', error);
